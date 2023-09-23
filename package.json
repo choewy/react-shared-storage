@@ -2,11 +2,18 @@
   "name": "react-shared-storage",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
+  },
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/uuid": "^9.0.4",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.53",
     "@types/react": "^18.2.22",
@@ -18,12 +25,6 @@
     "typescript": "^4.9.5",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [
@@ -43,7 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/uuid": "^9.0.4"
-  }
+  "homepage": "https://choewy.github.io/react-shared-storage"
 }
