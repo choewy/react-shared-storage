@@ -3,7 +3,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { RecoilRoot } from 'recoil';
 
-import App from './app';
+import App from '@/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
