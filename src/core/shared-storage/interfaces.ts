@@ -6,7 +6,9 @@ export class SharedStorageValue<T> {
 export class SharedStorageItem<T> {
   constructor(
     public readonly key: string,
-    public readonly value: SharedStorageValue<T>,
+    public readonly totalCount: number,
+    public readonly itemsCount: number,
+    public readonly current: SharedStorageValue<T>,
     public readonly items: SharedStorageValue<T>[],
   ) {}
 }

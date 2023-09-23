@@ -74,8 +74,11 @@ export class SharedStorage<T> {
       }
 
       const items = this.getItems();
+      const totalCount = items.length;
+      const current = items.shift() || null;
+      const itemsCount = items.length;
 
-      setItem(new SharedStorageItem(this.key, items.shift() || null, items));
+      setItem(new SharedStorageItem(this.key, totalCount, itemsCount, current, items));
       setLoad(false);
     }, [load, setItem, setLoad]);
 
