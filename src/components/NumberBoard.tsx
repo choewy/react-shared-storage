@@ -2,11 +2,11 @@ import { FC } from 'react';
 
 import { SharedStorage } from '@/core';
 
-const stoage = new SharedStorage<number>('numbers');
+const storage = new SharedStorage<number>('numbers');
 
 export const NumberBoard: FC = () => {
-  const item = stoage.useItem();
-  const handler = stoage.useHandler();
+  const item = storage.useItem();
+  const handler = storage.useHandler();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '98vh' }}>
