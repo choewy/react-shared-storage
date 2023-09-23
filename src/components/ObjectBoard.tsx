@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import { SharedStorage } from '@/core';
 
@@ -7,6 +7,23 @@ const storage = new SharedStorage<object>('objects');
 export const ObjectBoard: FC = () => {
   const item = storage.useItem();
   const handler = storage.useHandler();
+
+  useEffect(() => {
+    if (item.totalCount === 30) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      handler.rpush({
+        id: ['id', item.totalCount + 1].join('_'),
+        value: { name: ['obj', item.totalCount + 1].join(':') },
+      });
+    }, 2_000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [item, handler.rpush]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '98vh' }}>
