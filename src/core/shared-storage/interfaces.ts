@@ -14,5 +14,9 @@ export class SharedStorageItem<T> {
 }
 
 export class SharedStorageHandler<T> {
-  constructor(public readonly push: (value: SharedStorageValue<T>) => void, public readonly clear: () => void) {}
+  constructor(
+    public readonly rpush: (value: SharedStorageValue<T>) => void,
+    public readonly lpop: (currentId?: string | number) => SharedStorageValue<T> | null,
+    public readonly clear: () => void,
+  ) {}
 }

@@ -14,13 +14,20 @@ export const NumberBoard: FC = () => {
       <div style={{ display: 'flex', marginBottom: 10 }}>
         <button
           onClick={() => {
-            handler.push({
-              id: Date.now(),
-              value: Date.now(),
+            handler.rpush({
+              id: ['id', item.totalCount + 1].join('_'),
+              value: item.totalCount + 1,
             });
           }}
         >
           push
+        </button>
+        <button
+          onClick={() => {
+            handler.lpop(item.current?.id);
+          }}
+        >
+          next
         </button>
         <button onClick={handler.clear}>clear</button>
       </div>

@@ -31,7 +31,7 @@ export class SharedStorage<T> {
     return this.parse(value);
   }
 
-  private push(value: SharedStorageValue<T>) {
+  private rpush(value: SharedStorageValue<T>) {
     const items = this.getItems();
 
     if (items.find((item) => item.id === value.id)) {
@@ -39,6 +39,19 @@ export class SharedStorage<T> {
     }
 
     this.storage.setItem(this.key, JSON.stringify(this.getItems().concat([value])));
+  }
+
+  private lpop(id?: number | string) {
+    const items = this.getItems();
+    const item = items.shift();
+
+    if (id && item && item?.id !== id) {
+      return null;
+    }
+
+    this.storage.setItem(this.key, JSON.stringify(items));
+
+    return item || null;
   }
 
   private clear() {
@@ -88,10 +101,21 @@ export class SharedStorage<T> {
   public useHandler() {
     const setLoad = this.loader.useSetState();
 
-    const push = useCallback(
+    const lpush = useCallback(
       (value: SharedStorageValue<T>) => {
-        this.push(value);
+        this.rpush(value);
         setLoad(true);
+      },
+      [setLoad],
+    );
+
+    const lpop = useCallback(
+      (id?: number | string) => {
+        const item = this.lpop(id);
+
+        setLoad(true);
+
+        return item;
       },
       [setLoad],
     );
@@ -101,6 +125,6 @@ export class SharedStorage<T> {
       setLoad(true);
     }, [setLoad]);
 
-    return new SharedStorageHandler(push, clear);
+    return new SharedStorageHandler(lpush, lpop, clear);
   }
 }

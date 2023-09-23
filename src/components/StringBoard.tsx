@@ -14,13 +14,20 @@ export const StringBoard: FC = () => {
       <div style={{ display: 'flex', marginBottom: 10 }}>
         <button
           onClick={() => {
-            handler.push({
-              id: Date.now(),
-              value: new Date().toISOString(),
+            handler.rpush({
+              id: ['id', item.totalCount + 1].join('_'),
+              value: ['string', item.totalCount + 1].join(':'),
             });
           }}
         >
           push
+        </button>
+        <button
+          onClick={() => {
+            handler.lpop(item.current?.id);
+          }}
+        >
+          next
         </button>
         <button onClick={handler.clear}>clear</button>
       </div>
