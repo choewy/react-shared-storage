@@ -7,8 +7,8 @@ on:
 
 jobs:
   deploy:
+    name: Deploy To gh-pages
     runs-on: ubuntu-22.04
-
     strategy:
       matrix:
         node: [20]
@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
