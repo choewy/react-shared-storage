@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Store } from '../store';
+import { Store } from '@/persistences';
+
 import { SharedStorageHandler, SharedStorageItem, SharedStorageValue } from './interfaces';
 
 export class SharedStorage<T> {
