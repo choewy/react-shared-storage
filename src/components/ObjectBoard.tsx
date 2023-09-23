@@ -9,8 +9,9 @@ export const ObjectBoard: FC = () => {
   const handler = storage.useHandler();
 
   return (
-    <div>
-      <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '98vh' }}>
+      <h1>Object Board</h1>
+      <div style={{ display: 'flex', marginBottom: 10 }}>
         <button
           onClick={() => {
             handler.push({
@@ -23,7 +24,19 @@ export const ObjectBoard: FC = () => {
         </button>
         <button onClick={handler.clear}>clear</button>
       </div>
-      <pre>{item ? JSON.stringify(item, null, 2) : <>null</>}</pre>
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          overflow: 'scroll',
+          padding: 30,
+          boxSizing: 'border-box',
+          background: '#123',
+          color: 'white',
+        }}
+      >
+        <pre>{item ? JSON.stringify(item, null, 2) : <>null</>}</pre>
+      </div>
     </div>
   );
 };
