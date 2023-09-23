@@ -22,9 +22,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Install
+        run: npm install
+
       - name: Build
-        shell: bash
-        run: scripts/actions/build.sh
+        run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
