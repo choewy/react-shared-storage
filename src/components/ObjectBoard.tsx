@@ -9,8 +9,12 @@ export const ObjectBoard: FC = () => {
   const handler = storage.useHandler();
 
   useEffect(() => {
-    if (item.totalCount === 30) {
+    if (item === null) {
       return;
+    }
+
+    if (item.totalCount === 15) {
+      return handler.clear();
     }
 
     const interval = setInterval(() => {
@@ -23,7 +27,7 @@ export const ObjectBoard: FC = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [item, handler.rpush]);
+  }, [item, handler.rpush, handler.clear]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '98vh' }}>
