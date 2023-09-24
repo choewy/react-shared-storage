@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/react-shared-storage/static/js/main.655cdb79.js",
+    "main.js": "/react-shared-storage/static/js/main.5620fb0b.js",
     "static/js/787.86ef1233.chunk.js": "/react-shared-storage/static/js/787.86ef1233.chunk.js",
     "index.html": "/react-shared-storage/index.html",
-    "main.655cdb79.js.map": "/react-shared-storage/static/js/main.655cdb79.js.map",
+    "main.5620fb0b.js.map": "/react-shared-storage/static/js/main.5620fb0b.js.map",
     "787.86ef1233.chunk.js.map": "/react-shared-storage/static/js/787.86ef1233.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.655cdb79.js"
+    "static/js/main.5620fb0b.js"
   ]
 }
