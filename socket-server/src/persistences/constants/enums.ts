@@ -1,11 +1,11 @@
-export enum SocketStringEventType {
-  NEW = 'string:new',
+export enum SocketNumberEventType {
+  NEW = 'rpush_number',
 }
 
-export enum SocketNumberEventType {
-  NEW = 'number:new',
+export enum SocketStringEventType {
+  NEW = 'rpush_string',
 }
 
 export enum SocketObjectEventType {
-  NEW = 'object:new',
+  NEW = 'rpush_object',
 }

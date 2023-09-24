@@ -1,20 +1,14 @@
 import io from 'socket.io';
 
-import { SocketNumberEventType } from '../persistences';
-import { NumberRto } from '../dto';
+import { IdxMap, SocketNumberEventType } from '../persistences';
+import { KeyDto, NumberRto } from '../dto';
 
 export class SocketNumberEvent {
-  private idx = 0;
-
-  constructor(private readonly ioServer: io.Server) {}
-
-  private nextIdx() {
-    this.idx += 1;
-
-    return this.idx;
-  }
+  constructor(private readonly io: io.Server, private readonly key: KeyDto) {}
 
   public sendNew() {
-    this.ioServer.emit(SocketNumberEventType.NEW, new NumberRto(this.nextIdx()));
+    console.log(`send ${SocketNumberEventType.NEW}`);
+
+    this.io.in(this.key.r).emit(SocketNumberEventType.NEW, new NumberRto(IdxMap.next(this.key, 'n')));
   }
 }
