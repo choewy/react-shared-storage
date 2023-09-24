@@ -3,7 +3,7 @@ import { KeyDto } from 'src/dto';
 export class IntervalMap {
   private static map = new Map();
 
-  public static add(key: string, callback: () => void, milliseconds: number = 1_000) {
+  public static add(key: string, callback: () => void, milliseconds: number = 1200) {
     if (this.map[key]) {
       return;
     }
