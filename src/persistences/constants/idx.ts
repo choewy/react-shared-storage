@@ -4,16 +4,32 @@ export class Idx {
   private static o = Number(localStorage.getItem('__idx_o') || 0);
 
   public static next(type: 'n' | 's' | 'o') {
-    const i = Number(localStorage.getItem(`__idx_${type}`));
+    const val = Number(localStorage.getItem(`__idx_${type}`));
 
-    if (i !== this[type]) {
+    if (val !== this[type]) {
       return null;
     }
 
-    this[type] = i + 1;
+    this[type] = val + 1;
 
     localStorage.setItem(`__idx_${type}`, String(this[type]));
 
     return this[type];
+  }
+
+  public static nextForce(type: 'n' | 's' | 'o') {
+    let idx = 0;
+
+    const val = Number(localStorage.getItem(`__idx_${type}`));
+
+    if (val == null) {
+      idx = 1;
+    } else {
+      idx = val + 1;
+    }
+
+    localStorage.setItem(`__idx_${type}`, String(idx));
+
+    return idx;
   }
 }

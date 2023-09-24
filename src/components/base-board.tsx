@@ -17,13 +17,7 @@ export function BaseBoardComponent<T>({
   const handler = storage.useHandler();
 
   const onRpush = useCallback(() => {
-    let idx = Idx.next(type);
-
-    if (idx === null) {
-      idx = Date.now();
-    }
-
-    handler.rpush(makePushValue(idx, 'rpush'));
+    handler.rpush(makePushValue(Idx.nextForce(type), 'rpush'));
   }, [item, type, handler]);
 
   const onLpop = useCallback(() => {
