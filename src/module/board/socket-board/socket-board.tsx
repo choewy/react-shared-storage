@@ -30,11 +30,12 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
     };
   }, [mode, numberHandler, stringHandler, objectHandler]);
 
-  const load = mode === BoardMode.SOCKET && socket.connected;
+  const load = mode === BoardMode.SOCKET;
+
   const emptyText =
-    socket.connected === true
-      ? 'loading...'
-      : 'socket.io disconnected.\nserver is closed.\nenter `npm run server` in other terminal.';
+    socket.connected === false
+      ? 'socket.io disconnected.\nserver is closed.\nenter `npm run server` in other terminal.'
+      : 'loading...';
 
   return (
     <ContainerComponent columeCount={3}>
