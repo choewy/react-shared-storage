@@ -1,10 +1,34 @@
-import { useEffect } from 'react';
-import { BaseBoardComponentProps } from './interfaces';
+import { useCallback, useEffect } from 'react';
+
+import { Idx } from '@/persistences/constants';
 import { timeoutMap } from '@/core';
 
-export function BaseBoardComponent<T>({ type, load, title, emptyText, storage, onPush }: BaseBoardComponentProps<T>) {
+import { BaseBoardComponentProps } from './interfaces';
+
+export function BaseBoardComponent<T>({
+  type,
+  load,
+  title,
+  emptyText,
+  storage,
+  makePushValue,
+}: BaseBoardComponentProps<T>) {
   const item = storage.useItem(load);
   const handler = storage.useHandler();
+
+  const onRpush = useCallback(() => {
+    let idx = Idx.next(type);
+
+    if (idx === null) {
+      idx = Date.now();
+    }
+
+    handler.rpush(makePushValue(idx, 'rpush'));
+  }, [item, type, handler]);
+
+  const onLpop = useCallback(() => {
+    handler.lpop(item.current?.id);
+  }, [item, handler]);
 
   useEffect(() => {
     if (item === null) {
@@ -24,14 +48,8 @@ export function BaseBoardComponent<T>({ type, load, title, emptyText, storage, o
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '95vh' }}>
       <h1>{title}</h1>
       <div style={{ display: 'flex', marginBottom: 10 }}>
-        <button onClick={onPush}>rpush</button>
-        <button
-          onClick={() => {
-            handler.lpop(item.current?.id);
-          }}
-        >
-          lpop
-        </button>
+        <button onClick={onRpush}>rpush</button>
+        <button onClick={onLpop}>lpop</button>
         <button onClick={handler.clear}>clear</button>
       </div>
       <div

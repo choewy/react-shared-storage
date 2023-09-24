@@ -1,4 +1,4 @@
-import { SharedStorage } from '@/core';
+import { SharedStorage, SharedStorageValue } from '@/core';
 import { PropsWithChildren } from 'react';
 
 export interface ContainerComponentProps extends PropsWithChildren {
@@ -11,5 +11,5 @@ export interface BaseBoardComponentProps<T> {
   title: string;
   emptyText: string;
   storage: SharedStorage<T>;
-  onPush(): void;
+  makePushValue(idx: number, subfix: string): SharedStorageValue<T>;
 }

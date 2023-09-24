@@ -4,6 +4,7 @@ import { BoardMode } from '@/persistences/constants';
 import { socket, SocketClientListener } from '@/core';
 import { BaseBoardComponent, ContainerComponent } from '@/components';
 import { numberStorageStore, objectStorageStore, stringStorageStore } from '@/store';
+import { makeNumberValue, makeObjectValue, makeStringValue } from '@/utils';
 
 export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
   const numberHandler = numberStorageStore.useHandler();
@@ -43,7 +44,7 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         title="NumberType"
         emptyText={emptyText}
         storage={numberStorageStore}
-        onPush={() => {}}
+        makePushValue={makeNumberValue}
       />
       <BaseBoardComponent
         type="s"
@@ -51,7 +52,7 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         title="StringType"
         emptyText={emptyText}
         storage={stringStorageStore}
-        onPush={() => {}}
+        makePushValue={makeStringValue}
       />
       <BaseBoardComponent
         type="o"
@@ -59,7 +60,7 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         title="ObjectType"
         emptyText={emptyText}
         storage={objectStorageStore}
-        onPush={() => {}}
+        makePushValue={makeObjectValue}
       />
     </ContainerComponent>
   );
