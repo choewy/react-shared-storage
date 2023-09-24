@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Store } from '@/persistences';
+import { Store } from '@/persistences/interfaces';
 
 import { SharedStorageHandler, SharedStorageItem, SharedStorageValue } from './interfaces';
 
@@ -58,7 +58,7 @@ export class SharedStorage<T> {
     this.storage.removeItem(this.key);
   }
 
-  public useItem() {
+  public useItem(reload?: boolean) {
     const [item, setItem] = useState<SharedStorageItem<T> | null>(null);
     const [load, setLoad] = this.loader.useState();
 
@@ -80,6 +80,12 @@ export class SharedStorage<T> {
         window.removeEventListener('storage', onChangeStorage);
       };
     }, [onChangeStorage]);
+
+    useEffect(() => {
+      if (reload) {
+        setLoad(true);
+      }
+    }, [reload, setLoad]);
 
     useEffect(() => {
       if (load === false) {
