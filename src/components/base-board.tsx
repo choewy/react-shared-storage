@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BaseBoardComponentProps } from './interfaces';
 
-export function BaseBoardComponent<T>({ load, title, storage, onPush }: BaseBoardComponentProps<T>) {
+export function BaseBoardComponent<T>({ load, title, emptyText, storage, onPush }: BaseBoardComponentProps<T>) {
   const item = storage.useItem(load);
   const handler = storage.useHandler();
 
@@ -40,7 +40,7 @@ export function BaseBoardComponent<T>({ load, title, storage, onPush }: BaseBoar
           color: 'white',
         }}
       >
-        <pre>{item ? JSON.stringify(item, null, 2) : <>loading...</>}</pre>
+        <pre>{item ? JSON.stringify(item, null, 2) : <>{emptyText}</>}</pre>
       </div>
     </div>
   );
