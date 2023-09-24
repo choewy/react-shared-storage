@@ -6,7 +6,8 @@
     "start": "craco start",
     "build": "craco build && cp build/index.html build/404.html",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "server": "sh ./server/run.sh"
   },
   "dependencies": {
     "@craco/craco": "^7.1.0",
