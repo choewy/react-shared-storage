@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { BaseBoardComponentProps } from './interfaces';
+import { timeoutMap } from '@/core';
 
-export function BaseBoardComponent<T>({ load, title, emptyText, storage, onPush }: BaseBoardComponentProps<T>) {
+export function BaseBoardComponent<T>({ type, load, title, emptyText, storage, onPush }: BaseBoardComponentProps<T>) {
   const item = storage.useItem(load);
   const handler = storage.useHandler();
 
@@ -10,10 +11,14 @@ export function BaseBoardComponent<T>({ load, title, emptyText, storage, onPush 
       return;
     }
 
-    if (item.totalCount === 15) {
-      return handler.clear();
+    if (item.totalCount > 5) {
+      timeoutMap.add(type, () => handler.lpop());
+
+      return () => {
+        timeoutMap.clear(type);
+      };
     }
-  }, [load, item]);
+  }, [type, load, item]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: '95vh' }}>

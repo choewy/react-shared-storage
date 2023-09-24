@@ -38,6 +38,7 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
   return (
     <ContainerComponent columeCount={3}>
       <BaseBoardComponent
+        type="n"
         load={load}
         title="NumberType"
         emptyText={emptyText}
@@ -45,6 +46,7 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         onPush={() => {}}
       />
       <BaseBoardComponent
+        type="s"
         load={load}
         title="StringType"
         emptyText={emptyText}
@@ -52,6 +54,7 @@ export const SocketBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         onPush={() => {}}
       />
       <BaseBoardComponent
+        type="o"
         load={load}
         title="ObjectType"
         emptyText={emptyText}

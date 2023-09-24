@@ -3,7 +3,7 @@ export class IntervalMap {
   private s: NodeJS.Timer = null;
   private o: NodeJS.Timer = null;
 
-  public add(type: 'n' | 's' | 'o', callback: () => void, milliseconds = 1_000) {
+  public add(type: 'n' | 's' | 'o', callback: () => void, milliseconds = 1200) {
     if (this[type]) {
       return;
     }

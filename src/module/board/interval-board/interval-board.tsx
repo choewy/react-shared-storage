@@ -18,6 +18,10 @@ export const IntervalBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
     intervalMap.add('n', () => {
       const idx = Idx.next('n');
 
+      if (idx === null) {
+        return;
+      }
+
       numberHandler.rpush({
         id: ['interval', idx].join('_'),
         value: idx,
@@ -37,6 +41,10 @@ export const IntervalBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
     intervalMap.add('s', () => {
       const idx = Idx.next('s');
 
+      if (idx === null) {
+        return;
+      }
+
       stringHandler.rpush({
         id: ['interval', idx].join('_'),
         value: ['string', idx].join('_'),
@@ -55,6 +63,10 @@ export const IntervalBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
 
     intervalMap.add('o', () => {
       const idx = Idx.next('o');
+
+      if (idx === null) {
+        return;
+      }
 
       objectHandler.rpush({
         id: ['interval', idx].join('_'),
@@ -76,6 +88,7 @@ export const IntervalBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
   return (
     <ContainerComponent columeCount={3}>
       <BaseBoardComponent
+        type="n"
         load={load}
         title="NumberType"
         emptyText={emptyText}
@@ -83,6 +96,7 @@ export const IntervalBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         onPush={() => {}}
       />
       <BaseBoardComponent
+        type="s"
         load={load}
         title="StringType"
         emptyText={emptyText}
@@ -90,6 +104,7 @@ export const IntervalBoard: FC<{ mode: BoardMode }> = ({ mode }) => {
         onPush={() => {}}
       />
       <BaseBoardComponent
+        type="o"
         load={load}
         title="ObjectType"
         emptyText={emptyText}

@@ -6,6 +6,7 @@ export interface ContainerComponentProps extends PropsWithChildren {
 }
 
 export interface BaseBoardComponentProps<T> {
+  type: 'n' | 's' | 'o';
   load: boolean;
   title: string;
   emptyText: string;
