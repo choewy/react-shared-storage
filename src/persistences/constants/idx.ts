@@ -6,7 +6,12 @@ export class Idx {
   public static next(type: 'n' | 's' | 'o') {
     const val = Number(localStorage.getItem(`__idx_${type}`));
 
+    if (val == null) {
+      return null;
+    }
+
     if (val !== this[type]) {
+      this[type] = val;
       return null;
     }
 
