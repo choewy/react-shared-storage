@@ -1,3 +1,2 @@
-export * from './NumberBoard';
-export * from './StringBoard';
-export * from './ObjectBoard';
+export * from './container';
+export * from './base-board';
